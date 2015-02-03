@@ -16,26 +16,40 @@ imap <C-j> <esc>
 "---------------------------
 " Start Neobundle Settings.
 "---------------------------
-" bundleで管理するディレクトリを指定
-set runtimepath+=~/.vim/bundle/neobundle.vim/
- 
-" Required:
-call neobundle#begin(expand('~/.vim/bundle/'))
- 
-" neobundle自体をneobundleで管理
-NeoBundleFetch 'Shougo/neobundle.vim'
- 
-" 今後このあたりに追加のプラグインをどんどん書いて行きます！！"
- 
-call neobundle#end()
- 
-" Required:
-filetype plugin indent on
+filetype off
 
-" 未インストールのプラグインがある場合、インストールするかどうかを尋ねてくれるようにする設定
-" 毎回聞かれると邪魔な場合もあるので、この設定は任意です。
+
+if has('vim_starting')
+	set nocompatible               " be iMproved
+	set runtimepath+=~/.vim/bundle/neobundle.vim
+endif
+"Required
+call neobundle#begin(expand('~/.vim/bundle/'))
+
+"Let NeoBundle manage NeoBundle
+"Required
+NeoBundle 'Shougo/neobundle.vim'
+
+"My Bundles here
+NeoBundle 'Shougo/vimproc'
+NeoBundle 'VimClojure'
+NeoBundle 'Shougo/vimshell'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'jpalardy/vim-slime'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'scrooloose/nerdtree'
+
+call neobundle#end()
+
+filetype plugin indent on     " required!
+syntax on
 NeoBundleCheck
- 
 "-------------------------
 " End Neobundle Settings.
 "-------------------------
+"
+"-------------------------
+"short cut
+"-------------------------
+"NERTTree shortcut
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
